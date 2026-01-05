@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mazaid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 13:46:02 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/04 14:12:13 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/05 21:18:03 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void ScalarConverter::convertFromFloat(const std::string &str)
 
 	// Convert to int
 	if (std::isnan(floatValue) || std::isinf(floatValue) ||
-	    floatValue > INT_MAX || floatValue < INT_MIN)
+	    floatValue > 2147483647.0f || floatValue < -2147483648.0f)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(floatValue) << std::endl;

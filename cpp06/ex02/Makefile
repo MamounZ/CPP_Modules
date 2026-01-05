@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
-SRCS = main.cpp identify.cpp
+SRCS = main.cpp identify.cpp Base.cpp
 OBJS = $(SRCS:.cpp=.o)
 NAME = a.out
 all: $(NAME)
