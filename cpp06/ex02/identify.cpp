@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identify.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mazaid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:22:05 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/05 19:45:34 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/06 17:59:53 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ void identify(Base* p)
 
 void identify(Base& p)
 {
-	if (dynamic_cast<A*>(&p))
+	try
 	{
+		void(dynamic_cast<A&>(p));
 		std::cout << "A" << std::endl;
-		return;
-	}
-
-	if (dynamic_cast<B*>(&p))
+	} catch (...) {}
+	
+	try
 	{
+		void(dynamic_cast<B&>(p));
 		std::cout << "B" << std::endl;
-		return;
-	}
+	} catch (...) {}
 
-	if (dynamic_cast<C*>(&p))
+	try
 	{
+		void(dynamic_cast<C&>(p));
 		std::cout << "C" << std::endl;
-		return;
-	}
+	} catch (...) {}
 }

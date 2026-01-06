@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 13:46:02 by mazaid            #+#    #+#             */
-/*   Updated: 2026/01/05 21:18:03 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/06 17:37:02 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,10 @@ bool ScalarConverter::isInt(const std::string &str)
 		return (false);
 
 	char *endptr;
-	errno = 0;
 	long value = std::strtol(str.c_str(), &endptr, 10);
 
 	// Check: entire string consumed, no overflow, valid range
-	return (*endptr == '\0' && endptr != str.c_str() && errno == 0 &&
+	return (*endptr == '\0' && endptr != str.c_str() &&
 	        value >= INT_MIN && value <= INT_MAX);
 }
 
@@ -98,7 +97,6 @@ void ScalarConverter::convertFromInt(const std::string &str)
 {
 	long long value = std::atoll(str.c_str());
 
-	// Check for overflow
 	if (value > INT_MAX || value < INT_MIN)
 	{
 		std::cout << "char: impossible" << std::endl;
