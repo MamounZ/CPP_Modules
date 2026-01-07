@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 17:23:36 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/09 20:30:36 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/07 17:27:34 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int main()
 	for (unsigned int i = 0; i < a.size(); ++i)
 		a[i] = i * 10;
 
-	Array<int> b = a;
+	Array<int> b;
+	b = a;
 
 	std::cout << "a: ";
 	for (unsigned int i = 0; i < a.size(); ++i)

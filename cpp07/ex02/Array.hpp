@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 17:24:44 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/09 20:28:58 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/07 17:26:36 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <exception>
 #include <stdexcept>
+#include <cstdlib>
 
 template <typename T>
 class Array
@@ -27,19 +28,27 @@ class Array
 	public:
 	Array()
 	{
-		_array = NULL;
+		_array = new T[0];
 		_size = 0;
 	}
 
 	Array(unsigned int _size)
 	{
-		_array = new T[_size];
+		_array = new T[_size]();
 		this->_size = _size;
 	}
 
-	Array(const Array &other) : _array(NULL), _size(0)
+	Array(const Array &other)
 	{
-		*this = other;
+		_size = other._size;
+		if (_size == 0)
+			_array = new T[0];
+		else
+		{
+			_array = new T[_size];
+			for (unsigned int i = 0; i < _size; i++)
+				_array[i] = other._array[i];
+		}
 	}
 
 	Array &operator=(const Array &other)
@@ -49,7 +58,7 @@ class Array
 			delete[] _array;
 			_size = other._size;
 			if (_size == 0)
-				_array = NULL;
+				_array = new T[0];
 			else
 			{
 				_array = new T[_size];
@@ -72,7 +81,7 @@ class Array
 		return _array[index];
 	}
 
-	T const &operator[](unsigned int index) const
+	T &operator[](unsigned int index) const
 	{
 		if (index >= _size)
 			throw std::out_of_range("Array index out of range");

@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 15:52:19 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/09 16:33:33 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/07 16:31:51 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 
 template <typename T, typename Func>
-void iter(T const *array, size_t const length, Func f)
+void iter(T *array, size_t const length, Func f)
 {
 	for (size_t i = 0; i < length; i++)
 	{
