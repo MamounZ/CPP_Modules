@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 19:50:24 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/10 22:03:03 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/11 16:44:58 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ unsigned int Span::shortestSpan()
 	if (s.size() < 2)
 		throw std::runtime_error("not enough numbers");
 
-	std::set<int>::iterator it = s.begin();
+	std::multiset<int>::iterator it = s.begin();
 	int prev = *(it++);
 	unsigned int min_span = *it - prev;
-	for (; it != s.end(); it++)
+	while (it != s.end())
 	{
 		min_span = std::min(min_span, static_cast<unsigned int>(*it - prev));
 		prev = *it;
+		it++;	
 	}
 	return (min_span);
 }

@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 19:23:01 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/11 20:00:05 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/11 17:17:38 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ class MutantStack : public std::stack<T>
 		return *this;
 	}
 	~MutantStack() {}
-
 	typedef typename std::stack<T>::container_type::iterator iterator;
 	typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 	typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;

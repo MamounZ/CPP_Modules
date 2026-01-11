@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 19:27:33 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/11 19:00:13 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/11 16:49:30 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int main()
 	}
 	catch (std::exception const &e)
 	{
-		std::cout << "✓ " << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	return 0;

@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 19:33:20 by mazaid            #+#    #+#             */
-/*   Updated: 2025/12/10 22:02:57 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/11 16:24:38 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 class Span
 {
 	private:
-	std::set<int> s;
+	std::multiset<int> s;
 	unsigned int	max_size;
 
 
