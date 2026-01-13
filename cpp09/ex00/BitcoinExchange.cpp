@@ -6,7 +6,7 @@
 /*   By: mazaid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:04:25 by mazaid            #+#    #+#             */
-/*   Updated: 2026/01/13 19:26:52 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/13 19:41:18 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 	if (this != &other)
 	{
 		dataBase = other.dataBase;
-		input = other.input;
 	}
 	return (*this);
 }
@@ -116,7 +115,6 @@ void BitcoinExchange::parseInputFile(std::string inputFile)
 			std::cerr << "Error: too large a number." << std::endl;
 			continue ;
 		}
-		input[key] = value;
 		std::map<std::string, float>::iterator it = dataBase.upper_bound(key);
 		if (it == dataBase.begin())
 		{
@@ -124,6 +122,7 @@ void BitcoinExchange::parseInputFile(std::string inputFile)
 			continue;
 		}
 		--it;
+		std::cout<< it->first << std::endl;
 
 		std::cout << key << " => " << value << " = " << value * dataBase[it->first] << std::endl;
 	}

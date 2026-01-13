@@ -6,7 +6,7 @@
 /*   By: mazaid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:42:26 by mazaid            #+#    #+#             */
-/*   Updated: 2026/01/13 19:26:57 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/01/13 19:41:10 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 class BitcoinExchange
 {
 	private:
-	std::map<std::string, float> input;
 	std::map<std::string, float> dataBase;
 	BitcoinExchange();
 
