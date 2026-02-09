@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mazaid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 19:43:20 by mazaid            #+#    #+#             */
-/*   Updated: 2026/02/07 23:22:03 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/02/09 21:20:13 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,36 +57,31 @@ int validateInput(char *input)
 		return(1);
 	return(0);
 }
-void printContainers(const std::vector<int>& vctr, const std::deque<int>& dque)
-{
-	for(size_t i = 0; i < vctr.size(); i++)
-		std::cout << "vector["<< i << "]: " << vctr[i] << " ";
-	std::cout << std::endl;
-	for(size_t i = 0; i < dque.size(); i++)
-		std::cout << "deque["<< i << "]: " << dque[i] << " ";
-	std::cout << std::endl;
-}
 
 int main(int argc, char **argv)
 {
+	struct timeval parsingStartTime, parsingEndTime;
+	gettimeofday(&parsingStartTime, NULL);
 	std::vector<int>vctr;
 	std::deque<int>dque;
+	std::vector<int>originalSequence;
 	if (argc < 2)
 	{
 		std::cerr << "Error: No input provided.\n";
 		return 1;
 	}
-
 	for (int i = 1; i < argc; i++)
 	{
 		if (validateInput(argv[i]))
 			return 1;
+		originalSequence.push_back(std::atoi(argv[i]));
 		vctr.push_back(std::atoi(argv[i]));
 		dque.push_back(std::atoi(argv[i]));
 	}
-	printContainers(vctr, dque);
-	PmergeMe pmergeMe(vctr, dque);
-	pmergeMe.sortVector();
-	pmergeMe.displayContainers();
+	PmergeMe pmergeMe(vctr, dque, originalSequence);
+	gettimeofday(&parsingEndTime, NULL);
+	double ParsingTime = (parsingEndTime.tv_sec - parsingStartTime.tv_sec) * 1000000L + (parsingEndTime.tv_usec - parsingStartTime.tv_usec);
+	pmergeMe.sortContainers();
+	pmergeMe.displayContainers(ParsingTime);
 	return 0;
 }
