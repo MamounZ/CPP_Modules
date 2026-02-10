@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 19:44:53 by mazaid            #+#    #+#             */
-/*   Updated: 2026/02/09 20:51:48 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/02/10 14:36:49 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,5 @@ public:
 	bool vctr_is_sorted();
 	bool dque_is_sorted();
 };
-std::vector<int> jacobsthal(int n);
-std::vector<int> generateInsertionIndices(size_t size);
 
 #endif

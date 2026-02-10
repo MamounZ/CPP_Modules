@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mazaid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:04:25 by mazaid            #+#    #+#             */
-/*   Updated: 2026/01/13 19:41:18 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/02/10 15:37:23 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,6 @@ void BitcoinExchange::parseInputFile(std::string inputFile)
 			continue;
 		}
 		--it;
-		std::cout<< it->first << std::endl;
-
 		std::cout << key << " => " << value << " = " << value * dataBase[it->first] << std::endl;
 	}
 	InputStream.close();

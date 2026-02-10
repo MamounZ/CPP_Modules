@@ -6,7 +6,7 @@
 /*   By: mazaid <mazaid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 19:55:18 by mazaid            #+#    #+#             */
-/*   Updated: 2026/02/09 21:36:20 by mazaid           ###   ########.fr       */
+/*   Updated: 2026/02/10 16:05:12 by mazaid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,28 +88,6 @@ std::vector<int> jacobsthal(int n)
     return jacob;
 }
 
-// std::vector<int> generateInsertionIndices(size_t size)
-// {
-// 	std::vector<int> jacob;
-// 	int previos = 0;
-// 	int k = 3; // Start from J(3) = 3, as J(0), J(1), and J(2) are not used for insertion indices
-
-// 	while (jacob.size() < size)
-// 	{
-// 		int current = jacobsthal(k);
-// 		int target = std::min(current - 1, static_cast<int>(size) - 1);
-// 		while (target >= previos)
-// 		{
-// 			if (std::find(jacob.begin(), jacob.end(), target) == jacob.end())
-// 				jacob.push_back(target);
-// 			target--;
-// 		}
-// 		previos = current;
-// 		k++;
-// 	}
-// 	return jacob;
-// }
-
 
 std::vector<int> generateInsertionIndices(size_t size)
 {
@@ -159,9 +137,9 @@ std::vector<int> PmergeMe::recVctr(std::vector<int> vectoor)
 	std::vector<int> mainChain;
 	std::vector<int> pendingChain;
 
-	for(size_t i = 0; i < vectoor.size(); i += 2) 
+	for(size_t i = 0; i < vectoor.size(); i += 2) 																// Process pairs of elements in the input vector
 	{
-		if(vectoor[i] > vectoor[i + 1]) 																		// Compare pairs and build main and pending chains
+		if(vectoor[i] > vectoor[i + 1]) 																		// store the larger element in the main chain and the smaller element in the pending chain
 		{
 			mainChain.push_back(vectoor[i]);
 			pendingChain.push_back(vectoor[i + 1]);
@@ -180,18 +158,19 @@ std::vector<int> PmergeMe::recVctr(std::vector<int> vectoor)
 		newPendingChain.push_back(pendingChain[oldindex]);
 	}
 	if (hasLastElement)
-	newPendingChain.push_back(lastElement); 																// If there was an odd element, add it to the pending chain
-	
+		newPendingChain.push_back(lastElement); 																// If there was an odd element, add it to the pending chain
+			
 	std::vector<int> finalMainChain = newMainChain; 															// Start with the new main chain as the base for the final sorted chain
 	finalMainChain.insert(finalMainChain.begin(), newPendingChain.front()); 									// Insert the first element of the pending chain at the beginning of the main chain (as it is the smallest)
 	std::vector<int> insertionIndices = generateInsertionIndices(newPendingChain.size()); 						// Generate the insertion indices based on Jacobsthal numbers for the remaining pending elements
 	for(size_t i = 0; i < insertionIndices.size();i++) 															// Insert the remaining pending elements into the main chain at the correct positions determined by the insertion indices
 	{
 		int value = newPendingChain[insertionIndices[i]];
-		std::vector<int>::iterator it = std::lower_bound(finalMainChain.begin(), finalMainChain.end(), value); 	// Find the correct position to insert the pending element in the main chain
+		std::vector<int>::iterator main_it = std::find(finalMainChain.begin(), finalMainChain.end(), newMainChain[insertionIndices[i]]); 	// Find the position of the current pending element in the new main chain
+		std::vector<int>::iterator it = std::lower_bound(finalMainChain.begin(), main_it, value); 				// Find the correct position to insert the pending element in the main chain
 		finalMainChain.insert(it, value); 																		// Insert the pending element into the main chain at the correct position
 	}
-	return finalMainChain;
+	return (finalMainChain);
 }
 
 
@@ -211,9 +190,9 @@ std::deque<int> PmergeMe::recDque(std::deque<int> dequee)
 	std::deque<int> mainChain;
 	std::deque<int> pendingChain;
 
-	for(size_t i = 0; i < dequee.size(); i += 2) 
+	for(size_t i = 0; i < dequee.size(); i += 2) 																// Process pairs of elements in the input vector
 	{
-		if(dequee[i] > dequee[i + 1]) 																			// Compare pairs and build main and pending chains
+		if(dequee[i] > dequee[i + 1]) 																			// store the larger element in the main chain and the smaller element in the pending chain
 		{
 			mainChain.push_back(dequee[i]);
 			pendingChain.push_back(dequee[i + 1]);
@@ -240,10 +219,11 @@ std::deque<int> PmergeMe::recDque(std::deque<int> dequee)
 	for(size_t i = 0; i < insertionIndices.size();i++) 															// Insert the remaining pending elements into the main chain at the correct positions determined by the insertion indices
 	{
 		int value = newPendingChain[insertionIndices[i]];
-		std::deque<int>::iterator it = std::lower_bound(finalMainChain.begin(), finalMainChain.end(), value); 	// Find the correct position to insert the pending element in the main chain
+		std::deque<int>::iterator main_it = std::find(finalMainChain.begin(), finalMainChain.end(), newMainChain[insertionIndices[i]]); 	// Find the position of the current pending element in the new main chain
+		std::deque<int>::iterator it = std::lower_bound(finalMainChain.begin(), main_it, value); 				// Find the correct position to insert the pending element in the main chain
 		finalMainChain.insert(it, value); 																		// Insert the pending element into the main chain at the correct position
 	}
-	return finalMainChain;
+	return (finalMainChain);
 }
 
 void PmergeMe::sortContainers()
